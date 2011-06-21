@@ -6,12 +6,16 @@
         title: "Search ISBNdb for '%s'",
         contexts: [ "selection" ],
         onclick: function(clickData) {
-          chrome.tabs.create({
-            url: 'http://isbndb.com/search-all.html?kw=' +
-                    encodeURIComponent(clickData.selectionText)
-          })
+          showSearchResults(clickData.selectionText)
         }
       })
+
+      function showSearchResults(query) {
+        chrome.tabs.create({
+          url: 'http://isbndb.com/search-all.html?kw=' +
+                  encodeURIComponent(query)
+        })
+      }
     </script>
   </head>
   <body>

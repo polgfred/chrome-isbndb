@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      form {
+        width: 400px;
+      }
+      form input[name=query] {
+        width: 250px;
+      }
+      form input[type=submit] {
+        width: 125px;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" name="query">
+      <input type="submit" value="Search on ISBNdb">
+    </form>
+    <script>
+      var bgPage = chrome.extension.getBackgroundPage()
+      var searchForm = document.forms[0]
+
+      searchForm.addEventListener('submit', function(event) {
+        event.preventDefault()
+        bgPage.showSearchResults(searchForm.query.value)
+      })
+    </script>
+  </body>
+</html>
