@@ -30,11 +30,15 @@ function appendISBNLink(isbn) {
   var span = document.createElement('span')
   span.style.backgroundColor = '#ccc'
   span.style.fontSize = 'x-small'
-  span.innerHTML = '[' +
-    '<a href="http://isbndb.com/search-all.html?kw=' + isbn + '">' +
-      isbn + ' @ ISBNdb' +
-    '</a>' +
-  ']'
+  span.innerHTML = '[<a href="#">' + isbn + ' @ ISBNdb</a>]'
+  span.addEventListener('click', function(event) {
+    event.preventDefault()
+    chrome.extension.sendRequest({ name: 'getBook', isbn: isbn },
+      function(response) {
+        alert(response.body)
+      }
+    )
+  })
 
   var parent = node.parentNode
   parent.appendChild(document.createTextNode(' '))

@@ -2,7 +2,7 @@
   "name": "ISBNdb Lookup",
   "description": "Lookup book info at ISBNdb",
   "version": "0.0.1",
-  "permissions": [ "contextMenus" ],
+  "permissions": [ "contextMenus", "https://isbndb.com/api/*" ],
   "background_page": "background.html",
   "browser_action": {
     "default_title": "Search on ISBNdb",

@@ -16,6 +16,30 @@
                   encodeURIComponent(query)
         })
       }
+
+      chrome.extension.onRequest.addListener(
+        function(request, sender, sendResponse) {
+          if (request.name == 'getBook') {
+            getBook(request.isbn, sendResponse)
+          } else {
+            sendResponse({})
+          }
+        }
+      )
+
+      function getBook(isbn, sendResponse) {
+        var xhr = new XMLHttpRequest()
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            sendResponse({ success: true, body: xhr.responseText })
+          }
+        }
+        xhr.open('GET', 'https://isbndb.com/api/books.xml' +
+                          '?access_key=ABCD1234' +
+                          '&index1=isbn' +
+                          '&value1=' + isbn)
+        xhr.send()
+      }
     </script>
   </head>
   <body>
