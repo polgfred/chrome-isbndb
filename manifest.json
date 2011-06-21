@@ -7,5 +7,9 @@
   "browser_action": {
     "default_title": "Search on ISBNdb",
     "default_popup": "search.html"
-  }
+  },
+  "content_scripts": [{
+    "matches": [ "*://*/*" ],
+    "js": [ "page.js" ]
+  }]
 }
