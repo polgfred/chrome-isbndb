@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <script>
+      chrome.contextMenus.create({
+        title: "Search ISBNdb for '%s'",
+        contexts: [ "selection" ],
+        onclick: function(clickData) {
+          chrome.tabs.create({
+            url: 'http://isbndb.com/search-all.html?kw=' +
+                    encodeURIComponent(clickData.selectionText)
+          })
+        }
+      })
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
